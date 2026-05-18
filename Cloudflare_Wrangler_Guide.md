@@ -49,31 +49,29 @@ wrangler login
 
 ## 4. เริ่มต้นโปรเจกต์ใหม่ (Project Initialization)
 
+### 4.1 การสร้างโปรเจกต์ใหม่จากศูนย์
 สร้างโปรเจกต์ Worker ใหม่ด้วยคำสั่งเดียว:
-
 ```bash
 wrangler init my-first-worker
 ```
 
-**สิ่งที่ต้องเลือก (Recommended):**
-*   **Type**: เลือก "Hello World" worker
-*   **Language**: เลือก TypeScript (แนะนำ) หรือ JavaScript
-*   **Git**: ตอบ Yes เพื่อสร้าง Git repository
-
-### โครงสร้างไฟล์ในโปรเจกต์
-```text
-my-first-worker/
-├── node_modules/
-├── src/
-│   └── index.ts        # ไฟล์โค้ดหลัก
-├── package.json
-├── tsconfig.json
-└── wrangler.toml       # ไฟล์ตั้งค่าหลัก (สำคัญมาก!)
+### 4.2 การดึงโค้ดจาก Dashboard (Pull/Clone from Dashboard)
+หากคุณมี Worker อยู่บนระบบ Cloudflare แล้ว และต้องการดึงลงมาทำในเครื่อง (คล้ายการ Clone):
+```bash
+npm create cloudflare@latest <ชื่อโฟลเดอร์> -- --type pre-existing --existing-script <ชื่อ-worker-บน-dash>
 ```
+*   **<ชื่อโฟลเดอร์>**: ชื่อโฟลเดอร์ที่จะสร้างในเครื่อง
+*   **--existing-script**: ระบุชื่อ Worker ที่มีอยู่แล้วบน Cloudflare Dashboard
+
+### 4.3 การดึงโค้ดจาก Git (Clone from Repository)
+หากเพื่อนร่วมงานอัปโหลดโค้ดไว้บน GitHub/GitLab:
+1. **Clone**: `git clone <url-repository>`
+2. **Install**: `cd <folder-name> && npm install`
+3. **Login**: `wrangler login`
 
 ---
 
-## 5. การตั้งค่าผ่าน `wrangler.toml`
+## 5. การตั้งค่าผ่าน `wrangler.toml` (หรือ `wrangler.jsonc`)
 
 ไฟล์นี้ใช้สำหรับกำหนดชื่อโปรเจกต์, สภาพแวดล้อม (Environments), และการเชื่อมต่อกับฐานข้อมูล
 
